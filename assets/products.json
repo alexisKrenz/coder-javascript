@@ -1,0 +1,21 @@
+[{
+    "id": 5,
+    "nombre": "Fernet x1",
+    "precio": 1000,
+    "imgSrc": "./assets/img/fernet.png"
+}, {
+    "id": 6,
+    "nombre": "Fernet x3",
+    "precio": 2700,
+    "imgSrc": "./assets/img/fernet.png"
+}, {
+    "id": 7,
+    "nombre": "Fernet x6",
+    "precio": 5000,
+    "imgSrc": "./assets/img/fernet.png"
+}, {
+    "id": 8,
+    "nombre": "Fernet x12",
+    "precio": 9500,
+    "imgSrc": "./assets/img/fernet.png"
+}]

@@ -1,0 +1,301 @@
+body {
+    transition: .5s ease all;
+    background-color: rgb(179, 173, 173);
+}
+
+a{
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    background-image: url(./img/Main_Pic_ed002942-5bdb-4d34-80d8-1f5a79fb0031.png);
+    background-position: 0%;
+    background-size: cover;
+    height: 220px;
+}
+
+
+.nav a{
+    font-family: 'Bebas Neue', cursive;
+    color: #fff;
+    text-shadow: 2px 2px 10px #000;
+    font-size: x-large;
+}
+
+#switch {
+    position: fixed;
+    margin-left: 90%;
+    margin-top: 20%;
+}
+
+#switch img {
+    background-color: #ff3;
+    color: #000;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.user div img {
+    margin-right: 15px;
+    margin-left: 25px;
+    
+}
+
+.user a {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: -.2em;
+    margin-left: 25px ;
+    margin-bottom: 135px;
+}
+
+.userIcon {
+    height: 25px;
+    width: 25px;
+}
+
+.links {
+    margin-left: -45px;
+}
+
+.nav ul li {
+    text-decoration: none;
+    display: inline-block;
+    margin: .8em;
+}
+
+.nav form input {
+    margin-top: 25px;
+    width: 300px;
+    height: 20px;
+}
+
+
+.item {
+    background-color: rgb(16, 15, 22);
+    margin-right: 10em;
+    width: 500px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    color: antiquewhite;
+    margin-left: 40px;
+}
+
+.item:hover {
+    border: rgb(253, 38, 0) 1px solid;
+    box-shadow: 2px 2px 15px 0 rgb(224, 48, 24);
+}
+
+.item-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+img {
+    height: 100px;
+    width: 120px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.data {
+    display: flex;
+    justify-content: space-around;
+}
+
+.prodname {
+    display: block;
+    border-bottom: #fff 1px solid;
+    width: 100%;
+}
+
+
+.data p {
+    height: 25px;
+    width: 130px;
+    background-color: rgb(8, 8, 231);
+    color: rgb(179, 173, 173);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 5px;
+    margin-left: 30px;
+}
+
+.data p:hover {
+    background-color: rgb(12, 12, 194);
+    color: rgb(240, 232, 232);
+}
+
+
+.cart-item {
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    width: 420px;
+    background-color: #607d8b;
+}
+
+.unidades {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+
+.subTotal {
+    color: black;
+    text-align: center;
+    position: relative;
+    height: 50px;
+    width: 420px;
+    margin-top: 1em;
+    background-color: greenyellow;
+}
+
+
+.info {
+    width: 100px;
+    margin-right: 6em;
+    text-align: left;
+    padding-left: 0%;
+}
+
+.price{
+    width: 80px;
+}
+
+.showcart {
+    width: 85%;
+}
+
+
+
+
+.removeButton {
+    margin-top: 18px;
+    background-color: #f31;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+}
+
+
+.dark {
+    background-color: black;
+    color: #fff;
+    transition: .5s ease all;
+}
+
+div h4 {
+    text-align: center;
+}
+
+div p {
+    text-align: center;
+}
+
+.mostSold {
+
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 185px;
+    color: #000;
+    margin-bottom: 7rem;
+    
+}
+
+.mostSoldItem {
+    border: rgb(233, 17, 17) solid 1.5px;
+    background-color: #ccc;
+    text-align: center;
+    box-shadow: 2px 2px 15px 0 rgb(224, 48, 24);
+}
+
+.mostSoldItem a {
+    
+    color: rgb(179, 173, 173);
+    border-radius: 3px;
+    margin-bottom: 2em;
+
+}
+
+.mostSoldItem a :hover {
+    color: #fff
+}
+
+
+.mostSoldLink {
+    background-color: rgb(8, 8, 231);
+    width: 60%;
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-bottom: 10%;
+}
+
+.mostSoldLink :hover {
+    background-color: rgb(12, 12, 194);
+    color: #fff
+}
+
+
+.mostSoldImg {
+    background-color: #fff;
+    
+}
+
+
+
+
+
+
+.cantidad {
+    width: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    
+}
+
+.contador-carrito p {
+    position: absolute;
+    color: #fff;
+    margin-top: -2em;
+    margin-left: 4.5em;
+    width: 14px;
+    height: 14px;
+    background-color: #f31;
+    border-radius: 50%;
+    font-size: 13px;
+}
+
+
+.container-flex {
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+}
