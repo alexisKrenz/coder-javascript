@@ -1,38 +1,80 @@
 const products = [{
-    id: 0,
-    nombre: "Baileys",
-    precio: 6500,
-    imgSrc: "./assets/img/baileys.jpg",
-  },
-  {
-    id: 1,
-    nombre: "Cerveza",
-    precio: 200,
-    imgSrc: "./assets/img/duff.jpg",
-  },
-  {
-    id: 2,
-    nombre: "Vino Blanco",
-    precio: 250,
-    imgSrc: "./assets/img/blanco.png",
-  },
-  {
-    id: 3,
-    nombre: "Vino Tinto",
-    precio: 250,
-    imgSrc: "./assets/img/tinto.png",
-  },
-  {
-    id: 4,
-    nombre: "whisky",
-    precio: 8000,
-    imgSrc: "./assets/img/wisky.png",
-  },
+  id: 0,
+  nombre: "Baileys",
+  precio: 6500,
+  imgSrc: "./assets/img/baileys.png",
+},
+{
+  id: 1,
+  nombre: "Cerveza",
+  precio: 200,
+  imgSrc: "./assets/img/duff.jpg",
+},
+{
+  id: 2,
+  nombre: "Vino Blanco",
+  precio: 250,
+  imgSrc: "./assets/img/blanco.png",
+},
+{
+  id: 3,
+  nombre: "Vino Tinto",
+  precio: 250,
+  imgSrc: "./assets/img/tinto.png",
+},
+{
+  id: 4,
+  nombre: "Whisky Jack Daniels",
+  precio: 8000,
+  imgSrc: "./assets/img/wisky.png",
+},
+{
+  id: 5,
+  nombre: "Johnnie Walker R Label",
+  precio: 4000,
+  imgSrc: "./assets/img/rlabel.png",
+},
+{
+  id: 6,
+  nombre: "Licor Tia Maria",
+  precio: 1500,
+  imgSrc: "./assets/img/tmaria.png",
+},
+{
+  id: 7,
+  nombre: "Absenta",
+  precio: 12000,
+  imgSrc: "./assets/img/absent.png",
+},
+{
+  id: 8,
+  nombre: "Vodka Absolut",
+  precio: 4000,
+  imgSrc: "./assets/img/absolut.png",
+},
+{
+  id: 9,
+  nombre: "Vodka Smirnoff",
+  precio: 4000,
+  imgSrc: "./assets/img/smirnof.png",
+},
+{
+  id: 10,
+  nombre: "Whisky Chivas",
+  precio: 7500,
+  imgSrc: "./assets/img/chivas.png",
+},
+{
+  id: 11,
+  nombre: "Licor Sheridans",
+  precio: 9000,
+  imgSrc: "./assets/img/sheridan.png",
+},
 ];
 
 
 setTimeout(preguntarEdad, 2000);
-
+//funcion que pregunta si es mayor de edad al abrir la pagina, si lo es permite comprar, sino redirige a google.com//
 function preguntarEdad() {
   Swal.fire({
     title: 'Alto!',
@@ -60,13 +102,13 @@ const subTotalEl = document.querySelector('.subTotal');
 const removeButton = document.querySelectorAll('.removeButton')
 const darkModeButton = document.getElementById('switch');
 const mostSold = document.querySelector('.mostSold')
-const contadorDeItems = document.querySelector('.contador-carrito') 
+const contadorDeItems = document.querySelector('.contador-carrito')
 
 
-let cart = JSON.parse(localStorage.getItem('CART')) || []; // si no hay nada en localStorage le da como valor un array vacio
-actualizarCarrito();
+let carrito = JSON.parse(localStorage.getItem('CART')) || []; // si no hay nada en localStorage le da como valor un array vacio
+updateCart();
 
-function renderizarProducts() {
+function renderProd() {
   products.forEach((product) => {
     productsEl.innerHTML += `
     <div class="item">
@@ -88,33 +130,33 @@ function renderizarProducts() {
 </div>
 
     `
-  }) // al hacer click llama a addToCart y le pasa el parametro product.id
+  }) // al hacer click llama a addToCart y le pasa el parametro id de product
 }
-renderizarProducts();
+renderProd();
 
-function addToCart(id) { //////// esta funcion guarda el objeto especifico en el array //// este viene del onclick del <p> que llama a la funcion y pasa ese id como parametro. addToCart(id) representa al addToCart${product.id}
+function addToCart(id) { // guarda el objeto especifico en array / viene del onclick del <p> que llama a la funcion y pasa el id como parametro. addToCart(id) representa al addToCart${product.id}
 
-  if (cart.some((item) => item.id === id)) {
+  if (carrito.some((item) => item.id === id)) {
     callToast() // muestra mensaje utilizando toastify
   } else {
-    const item = products.find((product) => product.id === id); // busca en el array el objeto (el producto) que cumple con la condicion de tener un id igual al del onclick y LO RETORNA ENTERO(el id del producto tiene que ser igual que el parametro)
-    cart.push({
+    const item = products.find((product) => product.id === id); // busca en el array el objeto (producto) que cumple con la condicion de tener un id = al del onclick y lo retorna
+    carrito.push({
       ...item,
       cantidad: 1, // se utiliza spread para agregar una propiedad y valor nuevos 
     })
   }
-  actualizarCarrito()
+  updateCart()
 };
 
-function actualizarCarrito() {
-  renderizarItemsCarrito();
-  renderizarSubTotal();
-  localStorage.setItem('CART', JSON.stringify(cart)); // cada vez que se actualiza el carrito manda al CART el carrito con su contenido actual
+function updateCart() {
+  renderCartItems();
+  renderSubTotal();
+  localStorage.setItem('CART', JSON.stringify(carrito)); // cada vez que se actualiza el carrito manda al CART el carrito con su contenido actual
 }
 
-function renderizarItemsCarrito() {
+function renderCartItems() {
   cartItemsEl.innerHTML = ""; // esto evita la repeticion de productos 
-  cart.forEach((item) => {
+  carrito.forEach((item) => {
     cartItemsEl.innerHTML += `
     <div class="cart-item"> 
             <div class="info">
@@ -125,9 +167,9 @@ function renderizarItemsCarrito() {
             <h4> $ ${item.precio}</h2>
         </div>
         <div class="cantidad">
-            <div class="btnm" onclick="elegirUnidades('restar', ${item.id})">-</div>
+            <div class="btnm" onclick="selectUnits('restar', ${item.id})">-</div>
             <p>${item.cantidad}</p>
-            <div class="btnm" onclick="elegirUnidades('sumar', ${item.id})">+</div>
+            <div class="btnm" onclick="selectUnits('sumar', ${item.id})">+</div>
         </div>
         <div>
             <input type="button" class="removeButton" onclick="removeFromCart(${item.id})" value="X">
@@ -137,8 +179,8 @@ function renderizarItemsCarrito() {
   })
 };
 
-function elegirUnidades(acc, id) {
-  cart = cart.map((item) => {
+function selectUnits(acc, id) {
+  carrito = carrito.map((item) => {
     let unidadesEnCarrito = item.cantidad
     if (item.id === id) {
       if (acc === 'restar' && unidadesEnCarrito > 1) { // incrementa las unidades solo si es mayor a 1, evitando los numeros negativos
@@ -150,36 +192,36 @@ function elegirUnidades(acc, id) {
     return {
       ...item, // devuelve el objeto y lo desestructura nuevamente agregandole el nuevo valor
       cantidad: unidadesEnCarrito,
-      
+
     };
   })
-  actualizarCarrito(); // actualiza el carrito nuevamente 
+  updateCart(); // actualiza el carrito 
 };
 
 
-function renderizarSubTotal() {
+function renderSubTotal() {
   let precioTotal = 0;
   let totalDeItems = 0;
-  cart.forEach((item) => {
+  carrito.forEach((item) => {
     precioTotal += item.precio * item.cantidad;
     totalDeItems += item.cantidad;
   })
   subTotalEl.innerHTML = ''; // lo actualiza a 0 para no repetir y vuelve a escribir el resultado
   subTotalEl.innerHTML += `
   Subtotal: $${precioTotal}
-  <input type="button" value="Comprar!" onclick="realizarCompra()">
+  <input type="button" value="Comprar!" onclick="buy()">
   `
   contadorDeItems.innerHTML = `<p>${totalDeItems}</p>`
 };
 
 
 function removeFromCart(id) { // un parametro para saber a quien remover
-  cart = cart.filter((item) => item.id !== id) // reemplaza el array de cart con uno nuevo si es que el id pasado como parametro es distinto
-  actualizarCarrito();
+  carrito = carrito.filter((item) => item.id !== id) // reemplaza el array de cart con uno nuevo si es que el id pasado como parametro es distinto
+  updateCart();
 };
 
 
-function realizarCompra() {
+function buy() {
   cartItemsEl.innerHTML = ``;
   subTotalEl.innerHTML = `<p>Subtotal: $</p>`;
   Swal.fire({ // sweetalert para mostrar mensaje de confirmacion 
@@ -189,9 +231,9 @@ function realizarCompra() {
     showConfirmButton: false,
     timer: 1500
   })
-  cart = [];
+  carrito = [];
   contador = [];
-  actualizarCarrito();
+  updateCart();
 };
 
 
@@ -216,7 +258,7 @@ fetch("./assets/products.json")
   });
 
 
-///// dark mode ////
+// dark mode //
 darkModeButton.addEventListener('click', turnToDark);
 
 function turnToDark() {
@@ -228,7 +270,7 @@ if (localStorage.getItem('darkMode') === 'true') { // si quedo grabado en storag
   document.body.classList.add('dark')
 };
 
-//// llamar toastify ////
+// llama a toastify //
 function callToast() {
   Toastify({
     text: "Ya esta en el carrito",
@@ -242,8 +284,6 @@ function callToast() {
     style: {
       background: "linear-gradient(to right, #ff0000, #d84f00)",
     },
-    onClick: function () {}
+    onClick: function () { }
   }).showToast();
 };
-
-
